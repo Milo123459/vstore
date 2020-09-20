@@ -79,10 +79,11 @@ const Model3 = Instance.create({
 - Temporary JSON storage in the `store` directory
 - Memory cache
 
-**Search data by ID**
+**Search data**
 
 ```js
-Name.searchByID("id-goes-here");
+Name.searchByID("id-goes-here"); // by id
+Name.search({ fullname: 'john doe' }); // returns an array of items containing documents with fulllname as johndoe
 ```
 
 **Dependencies**
