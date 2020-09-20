@@ -3,11 +3,25 @@ import { mkdirSync, unlinkSync, writeFileSync } from "fs";
 import { join } from "path";
 import defaults from "lodash.defaults";
 import nanoid from "nanoid";
+import { create } from 'domain';
 const Cache: Map<string, object> = new Map();
 interface StoreOptions {
   name: string;
   json?: boolean;
   memoryCache?: boolean;
+}
+const createDir = (path: string) => {
+  try {
+    mkdirSync(path);
+  } catch {
+  }
+}
+class VError extends Error {
+  public constructor(...params: string[]) {
+    super();
+    this.message = params.join(" ");
+    this.name = 'VSTORE';
+  }
 }
 class Model {
   private props: object;
@@ -16,6 +30,7 @@ class Model {
   private key: string;
   private deleted: boolean;
   private product: object;
+  private cpy: object;
   public constructor(props: object, defaultvalues: object, ins: VStore) {
     this.props = props;
     this.defaults = defaultvalues;
@@ -46,6 +61,25 @@ class Model {
       Cache.delete(`${this.ins.options.name}${this.key}`);
     this.deleted = true;
   };
+  public update(newParams: object) {
+    if(this.deleted == true) throw new VError('DOCUMENT', `ALREADY`, `DELETED`);
+    this.cpy = this.product;
+    let product: object = defaults(newParams, this.cpy);
+    Object.entries(product).map((data) => {
+      if (typeof data[1] == "string") {
+        product[data[0]] = cjays(data[1], product);
+      }
+    });
+    this.product = product;
+    if (this.ins.options.memoryCache == true)
+      Cache.set(`${this.ins.options.name}${this.key}`, this.product);
+    if (this.ins.options.json == true) {
+      writeFileSync(
+        join(process.cwd(), `store`, this.ins.options.name, `${this.key}.json`),
+        JSON.stringify(this.product)
+      );
+    }
+  }
 }
 class Instance {
   private properties: object;
@@ -63,10 +97,8 @@ class VStore {
   public constructor(options: StoreOptions) {
     this.options = defaults(options, { json: false, memoryCache: false });
     if (this.options.json == true) {
-      try {
-        mkdirSync(join(process.cwd(), "store"));
-        mkdirSync(join(process.cwd(), `store`, this.options.name));
-      } catch {}
+      createDir(join(process.cwd(), "store"));
+      createDir(join(process.cwd(), `store`, this.options.name));
     }
   }
   public instance(properties?: object): Instance {
