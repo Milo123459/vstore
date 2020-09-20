@@ -26,7 +26,7 @@ Examples are written in JavaScript
 
 ```js
 // Lets require the module!
-const VStore = require("vstore");
+const VStore = require("vstorejs");
 // Create a store
 const Name = new VStore({
   name: `Name`, // Required
