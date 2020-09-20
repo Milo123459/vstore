@@ -1,6 +1,5 @@
 <p align="center"> <img src="https://raw.githubusercontent.com/Milo123459/vstore/master/assets/Logo.png" width=250 height=450/> </p>
 
-
 # **VStore** - **The most lenient way of saving data.**
 
 **Written in TypeScript with the power of TSLib**
@@ -74,6 +73,21 @@ const Model3 = Instance.create({
 });
 ```
 
+**Deleting data**
+
+```js
+
+Model.delete();
+// or
+Name.delete({/* search for things here */ }, index?); // this will call the search method, if you don't specify the index it'll default to 0, it takes in a number!
+```
+
+**Updating data**
+
+```js
+Model.update({ myNewProperty: "hello" });
+```
+
 **Features**
 
 - Temporary JSON storage in the `store` directory
@@ -82,8 +96,7 @@ const Model3 = Instance.create({
 **Search data**
 
 ```js
-Name.searchByID("id-goes-here"); // by id
-Name.search({ fullname: 'john doe' }); // returns an array of items containing documents with fulllname as johndoe
+Name.search({ fullname: "john doe" }); // returns an array of items containing documents with fulllname as johndoe
 ```
 
 **Dependencies**

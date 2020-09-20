@@ -1,26 +1,37 @@
 import cjays from "cjays";
-import { mkdirSync, unlinkSync, writeFileSync } from "fs";
-import { join } from "path";
+import {
+  mkdirSync,
+  readdirSync,
+  readFileSync,
+  unlinkSync,
+  writeFileSync,
+} from "fs";
+import { join, toNamespacedPath } from "path";
 import defaults from "lodash.defaults";
 import nanoid from "nanoid";
-import { create } from 'domain';
+import { create } from "domain";
 const Cache: Map<string, object> = new Map();
 interface StoreOptions {
   name: string;
   json?: boolean;
   memoryCache?: boolean;
 }
+interface SearchStuff {
+  [key: string]: any;
+  _: {
+    key: string;
+  };
+}
 const createDir = (path: string) => {
   try {
     mkdirSync(path);
-  } catch {
-  }
-}
+  } catch {}
+};
 class VError extends Error {
   public constructor(...params: string[]) {
     super();
     this.message = params.join(" ");
-    this.name = 'VSTORE';
+    this.name = "VSTORE";
   }
 }
 class Model {
@@ -43,8 +54,7 @@ class Model {
       }
     });
     this.product = product;
-    if (ins.options.memoryCache == true)
-      Cache.set(`${ins.options.name}${this.key}`, this.product);
+    if (ins.options.memoryCache == true) Cache.set(`${this.key}`, this.product);
     if (ins.options.json == true) {
       writeFileSync(
         join(process.cwd(), `store`, ins.options.name, `${this.key}.json`),
@@ -60,9 +70,10 @@ class Model {
     if (this.ins.options.memoryCache == true)
       Cache.delete(`${this.ins.options.name}${this.key}`);
     this.deleted = true;
-  };
+  }
   public update(newParams: object) {
-    if(this.deleted == true) throw new VError('DOCUMENT', `ALREADY`, `DELETED`);
+    if (this.deleted == true)
+      throw new VError("DOCUMENT", `ALREADY`, `DELETED`);
     this.cpy = this.product;
     let product: object = defaults(newParams, this.cpy);
     Object.entries(product).map((data) => {
@@ -72,7 +83,7 @@ class Model {
     });
     this.product = product;
     if (this.ins.options.memoryCache == true)
-      Cache.set(`${this.ins.options.name}${this.key}`, this.product);
+      Cache.set(`${this.key}`, this.product);
     if (this.ins.options.json == true) {
       writeFileSync(
         join(process.cwd(), `store`, this.ins.options.name, `${this.key}.json`),
@@ -104,6 +115,56 @@ class VStore {
   public instance(properties?: object): Instance {
     if (!properties) properties = {};
     return new Instance(properties, this);
+  }
+  public search(props: object): {} {
+    const res: Array<unknown> = [];
+    if (this.options.memoryCache == true) {
+      const cacheArray = [...Cache];
+      const entries = Object.entries(props);
+      cacheArray.filter((d) => {
+        const prop = d[1];
+        entries.map((entri) => {
+          if (!!(prop[entri[0]] && prop[entri[0]] == entri[1]))
+            return res.push({ ...d[1], _: { key: d[0] } });
+        });
+      });
+    } else if (this.options.json == true && this.options.memoryCache == false) {
+      const fileArray = [
+        ...readdirSync(
+          join(process.cwd(), `store`, this.options.name)
+        ).map((d) => [
+          d.split(".json")[0],
+          JSON.parse(
+            readFileSync(
+              join(process.cwd(), `store`, this.options.name, d)
+            ).toString()
+          ),
+        ]),
+      ];
+      if (Object.entries(props).length == 0) {
+        return fileArray.map((cache) => {
+          res.push({ ...cache[1], _: { key: cache[0] } });
+        });
+      }
+      const entries = Object.entries(props);
+      fileArray.filter((d) => {
+        const prop = d[1];
+        entries.map((entri) => {
+          if (!!(prop[entri[0]] && prop[entri[0]] == entri[1]))
+            return res.push({ ...d[1], _: { key: d[0] } });
+        });
+      });
+    }
+    return res;
+  }
+  public delete(searchData: object, index?: number) {
+    if (!index) index = 0;
+    const d: SearchStuff = this.search(searchData)[index];
+    if (this.options.json == true)
+      unlinkSync(
+        join(process.cwd(), `store`, this.options.name, d._.key + ".json")
+      );
+    if (this.options.memoryCache == true) Cache.delete(d._.key);
   }
 }
 
