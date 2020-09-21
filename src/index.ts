@@ -118,17 +118,7 @@ class VStore {
   }
   public search(props: object): {} {
     const res: Array<unknown> = [];
-    if (this.options.memoryCache == true) {
-      const cacheArray = [...Cache];
-      const entries = Object.entries(props);
-      cacheArray.filter((d) => {
-        const prop = d[1];
-        entries.map((entri) => {
-          if (!!(prop[entri[0]] && prop[entri[0]] == entri[1]))
-            return res.push({ ...d[1], _: { key: d[0] } });
-        });
-      });
-    } else if (this.options.json == true && this.options.memoryCache == false) {
+    if(this.options.json == true) {
       const fileArray = [
         ...readdirSync(
           join(process.cwd(), `store`, this.options.name)
@@ -141,13 +131,18 @@ class VStore {
           ),
         ]),
       ];
-      if (Object.entries(props).length == 0) {
-        return fileArray.map((cache) => {
-          res.push({ ...cache[1], _: { key: cache[0] } });
-        });
-      }
       const entries = Object.entries(props);
       fileArray.filter((d) => {
+        const prop = d[1];
+        entries.map((entri) => {
+          if (!!(prop[entri[0]] && prop[entri[0]] == entri[1]))
+            return res.push({ ...d[1], _: { key: d[0] } });
+        });
+      });
+    } else if (this.options.memoryCache == true && this.options.json == false) {
+      const cacheArray = [...Cache];
+      const entries = Object.entries(props);
+      cacheArray.filter((d) => {
         const prop = d[1];
         entries.map((entri) => {
           if (!!(prop[entri[0]] && prop[entri[0]] == entri[1]))
