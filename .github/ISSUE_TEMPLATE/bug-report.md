@@ -1,10 +1,9 @@
 ---
 name: 🐛 Bug report
 about: Report a bug to be fixed
-title: '🐛 Bug report (BUG_HERE)'
-labels: ''
-assignees: ''
-
+title: "🐛 Bug report (BUG_HERE)"
+labels: ""
+assignees: ""
 ---
 
 **Please describe your feature request**
