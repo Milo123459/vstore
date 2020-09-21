@@ -136,10 +136,4 @@ MyCoolDB (V4)
 - Postgres (V3)
 - MongoDB (V1.5)
 - Redis (V2)
-- # SQLite (V3)
-
-* Postgres (V3)
-* MongoDB (V1.5)
-* Redis (V2)
-* SQLite (V3)
-  > > > > > > > 76e80499bea07032cbe63a7b26dbe725598b80ba
+- SQLite (V3)
