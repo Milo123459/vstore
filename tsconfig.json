@@ -1,10 +1,10 @@
 {
   "compilerOptions": {
     "importHelpers": true,
-    "lib": ["ESNext"],
+    "lib": ["ES2018"],
     "module": "commonjs",
     "moduleResolution": "node",
-    "target": "ESNext",
+    "target": "ES2018",
     "outDir": "dist",
     "sourceMap": true,
     "esModuleInterop": true,
