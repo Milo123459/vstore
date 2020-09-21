@@ -28,8 +28,10 @@ Examples are written in JavaScript
 
 ```js
 // Lets require the module!
-const VStore = require("vstorejs");
-// Create a store
+const { VStore } = require("vstorejs");
+//or 
+import { VStore } from "vstorejs";
+// Create a store, we have to use 
 const Name = new VStore({
   name: `Name`, // Required
   memoryCache: true, // Defaults to false, if you want it enabled, set it as true

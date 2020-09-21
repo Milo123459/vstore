@@ -5,7 +5,8 @@
   "main": "dist/index.js",
   "scripts": {
     "test": "ts-node-dev --respawn --transpile-only --poll test/test.ts",
-    "lint": "eslint --fix && prettier --write ."
+    "lint": "eslint --fix && prettier --write .",
+    "build": "yarn tsc"
   },
   "keywords": [],
   "author": "",

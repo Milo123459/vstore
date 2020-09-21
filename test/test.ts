@@ -1,4 +1,4 @@
-import VStore from "../src/index";
+import { VStore } from "../src/index";
 const Store: VStore = new VStore({
   name: "test",
   json: true,
