@@ -105,6 +105,7 @@ Name.search({ fullname: "john doe" }); // returns an array of items containing d
 [cjays](https://npm.im/cjays)
 [tslib](https://npm.im/tslib)
 [lodash.defaults](https://npm.im/lodash.defaults)
+[nanoid](https://npm.im/nanoid)
 
 **Examples**
 
