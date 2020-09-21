@@ -29,9 +29,9 @@ Examples are written in JavaScript
 ```js
 // Lets require the module!
 const { VStore } = require("vstorejs");
-//or 
+//or
 import { VStore } from "vstorejs";
-// Create a store, we have to use 
+// Create a store, we have to use
 const Name = new VStore({
   name: `Name`, // Required
   memoryCache: true, // Defaults to false, if you want it enabled, set it as true
