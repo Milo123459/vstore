@@ -2,6 +2,8 @@
 
 # **VStore** - **The most lenient way of saving data.**
 
+**If you want to support, you can ⭐ the [repo](https://github.com/Milo123459/VStore)!**
+
 **Written in TypeScript with the power of TSLib**
 
 **FAQ**
@@ -107,3 +109,12 @@ Name.search({ fullname: "john doe" }); // returns an array of items containing d
 **Examples**
 
 You can find examples in the github repositors, in the examples directory.
+
+# Planned features
+
+Name is an instance of VStore.
+
+```js
+Name.duplicate({ searchData }, index?); // returns an instance of a model with duplicated data
+Name.update({ serchData }, { newParams }, index?) // updates a model
+```
