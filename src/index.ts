@@ -118,7 +118,7 @@ class VStore {
   }
   public search(props: object): {} {
     const res: Array<unknown> = [];
-    if(this.options.json == true) {
+    if (this.options.json == true) {
       const fileArray = [
         ...readdirSync(
           join(process.cwd(), `store`, this.options.name)
