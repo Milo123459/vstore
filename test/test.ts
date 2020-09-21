@@ -1,6 +1,6 @@
 import VStore from "../src/index";
 const Store: VStore = new VStore({
-  name: "fhhh",
+  name: "test",
   json: true,
   memoryCache: true,
 });
