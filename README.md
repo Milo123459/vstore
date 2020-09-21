@@ -131,8 +131,6 @@ Example:
 MyCoolDB (V4)
 ^ This means that we plan to add support for MyCoolDB in Version 4 of VStore
 
-<<<<<<< HEAD
-
 - Postgres (V3)
 - MongoDB (V1.5)
 - Redis (V2)
