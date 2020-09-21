@@ -1,7 +1,7 @@
 name: Push CI
 on:
   push:
-    branches: [ master ]
+    branches: [master]
 jobs:
   Lint:
     runs-on: ubuntu-latest
@@ -9,7 +9,7 @@ jobs:
       - uses: actions/checkout@v2
       - uses: actions/setup-node@v1
         with:
-          node-version: '14'
+          node-version: "14"
       - name: Get yarn cache directory path
         id: yarn-cache-dir-path
         run: echo "::set-output name=dir::$(yarn cache dir)"
@@ -19,7 +19,7 @@ jobs:
           path: ${{ steps.yarn-cache-dir-path.outputs.dir }}
           key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
           restore-keys: |
-            ${{ runner.os }}-yarn-  
+            ${{ runner.os }}-yarn-
       - name: Install
         run: yarn
       - name: Update everything
@@ -32,4 +32,4 @@ jobs:
           add: .
           author_name: Actions
           ref: master
-          message: 'Linted & Updated all dependencies for modules'
+          message: "Linted & Updated all dependencies for modules"

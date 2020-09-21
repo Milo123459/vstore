@@ -166,7 +166,6 @@ class VStore {
       );
     if (this.options.memoryCache == true) Cache.delete(d._.key);
   }
-}
-
+};
 export default VStore;
 export { StoreOptions, VStore, Cache };
