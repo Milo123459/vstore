@@ -5,7 +5,7 @@
   "main": "dist/index.js",
   "scripts": {
     "test": "ts-node-dev --respawn --transpile-only --poll test/test.ts",
-    "lint": "prettier --write ."
+    "lint": "eslint --fix && prettier --write ."
   },
   "keywords": [],
   "author": "",
@@ -20,6 +20,9 @@
     "@types/lodash.defaults": "^4.2.6",
     "@types/nanoid": "^2.1.0",
     "@types/node": "^14.11.1",
+    "@typescript-eslint/eslint-plugin": "^4.1.1",
+    "@typescript-eslint/parser": "^4.1.1",
+    "eslint": "^7.9.0",
     "prettier": "^2.1.2",
     "ts-node": "^9.0.0",
     "ts-node-dev": "^1.0.0-pre.62",
