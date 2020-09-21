@@ -1,7 +1,7 @@
 ---
-name: 🙌 Feature request
-about: Suggest an idea for this project
-title: '🙌 Feature request (FEATURE_HERE)'
+name: 🐛 Bug report
+about: Report a bug to be fixed
+title: '🐛 Bug report (BUG_HERE)'
 labels: ''
 assignees: ''
 
