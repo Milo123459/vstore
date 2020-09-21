@@ -121,3 +121,17 @@ Name is an instance of VStore.
 Name.duplicate({ searchData }, index?); // returns an instance of a model with duplicated data
 Name.update({ serchData }, { newParams }, index?) // updates a model
 ```
+
+Support for:
+
+Template: DB_NAME (PLANNED_VERSION_TO_RELEASE)
+
+Example:
+
+MyCoolDB (V4)
+^ This means that we plan to add support for MyCoolDB in Version 4 of VStore
+
+- Postgres (V3)
+- MongoDB (V1.5)
+- Redis (V2)
+- SQLite (V3)
