@@ -1,12 +1,13 @@
 {
   "name": "vstorejs",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "A local DB to perform actions fast",
   "main": "dist/index.js",
   "scripts": {
     "test": "ts-node-dev --respawn --transpile-only --poll test/test.ts",
     "lint": "eslint --fix && prettier --write .",
-    "build": "yarn tsc"
+    "build": "yarn tsc",
+    "prepublish": "yarn build"
   },
   "keywords": [],
   "author": "",
