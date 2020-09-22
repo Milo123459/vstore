@@ -34,7 +34,7 @@ interface SearchStuff {
     status?: boolean;
     _d: any;
   };
-};
+}
 const createDir = (path: string): void => {
   try {
     mkdirSync(path);
