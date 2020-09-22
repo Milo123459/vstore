@@ -7,7 +7,8 @@
     "test": "ts-node-dev --respawn --transpile-only --poll test/test.ts",
     "lint": "eslint --fix && prettier --write .",
     "build": "yarn tsc",
-    "prepublish": "yarn build"
+    "prepublish": "yarn build",
+    "git": "git-go"
   },
   "keywords": [],
   "author": "",
