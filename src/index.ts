@@ -1,7 +1,13 @@
 /*
 VStore
+
 https://npm.im/vstorejs
 https://github.com/Milo123459/vstore
+
+VStore/VStorejs
+
+Help the development by starring the repo. It helps!
+Thanks to Fionn for helping :)
 */
 import cjays from "cjays";
 import {
@@ -25,12 +31,23 @@ interface SearchStuff {
   [key: string]: any;
   _: {
     key: string;
+    status?: boolean;
+    _d: any;
   };
 };
 const createDir = (path: string): void => {
   try {
     mkdirSync(path);
   } catch {}
+};
+const objectUtil = (obj: object, replacer: object):object => {
+  const res: object = {};
+  Object.entries(obj).map((d) => {
+    if(replacer[d[0]]) {
+      res[d[0]] = replacer[d[0]]
+    }
+  });
+  return res;
 };
 class VError extends Error {
   public constructor(...params: string[]) {
@@ -151,20 +168,31 @@ class VStore {
       const entries = Object.entries(props);
       fileArray.filter((d) => {
         const prop = d[1];
+        const arr: Array<unknown> = [];
         entries.map((entri) => {
-          if (!!(prop[entri[0]] && prop[entri[0]] == entri[1]))
-            return res.push({ ...d[1], _: { key: d[0] } });
+          if (!!(prop[entri[0]] && prop[entri[0]] == entri[1])) {
+            return arr.push({ ...d[1], _: { key: d[0], status: defaults({...d[1]}, { entries: Object.entries }), _d: defaults({...d[1]}, { entries  }) } });
+          }
         });
+
+        if(arr.filter((x: SearchStuff) => x._.status == true).length == arr.length) {
+          res.push(arr[0]);
+        }
       });
     } else if (this.options.memoryCache == true && this.options.json == false) {
       const cacheArray = [...Cache];
       const entries = Object.entries(props);
       cacheArray.filter((d) => {
         const prop = d[1];
+        const arr: Array<unknown> = [];
         entries.map((entri) => {
-          if (!!(prop[entri[0]] && prop[entri[0]] == entri[1]))
-            return res.push({ ...d[1], _: { key: d[0] } });
+          if (!!(prop[entri[0]] && prop[entri[0]] == entri[1])) {
+            return arr.push({ ...d[1], _: { key: d[0], status: true } });
+          }
         });
+        if(arr.filter((x: SearchStuff) => x._.status == true).length == arr.length) {
+          res.push(arr[0]);
+        }
       });
     }
     return res;
