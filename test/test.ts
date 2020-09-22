@@ -5,6 +5,6 @@ const Store: VStore = new VStore({
   memoryCache: true,
 });
 const stuff = Store.instance({ hello: false, how: "{hello} {gamer}" });
-const x = stuff.create({ hello: true, gamer: true });
-stuff.create({ hello: true });
-const search = Store.search({ hello: true });
+const y = stuff.create({ hello: true });
+Store.delete({ hello: true }, 0);
+y.update({ x: 'hi' })

@@ -1,6 +1,6 @@
 {
   "name": "vstorejs",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "A local DB to perform actions fast",
   "main": "dist/index.js",
   "scripts": {

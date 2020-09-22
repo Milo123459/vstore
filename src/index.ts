@@ -1,15 +1,15 @@
 import cjays from "cjays";
 import {
+  existsSync,
   mkdirSync,
   readdirSync,
   readFileSync,
   unlinkSync,
   writeFileSync,
 } from "fs";
-import { join, toNamespacedPath } from "path";
+import { join } from "path";
 import defaults from "lodash.defaults";
 import nanoid from "nanoid";
-import { create } from "domain";
 const Cache: Map<string, object> = new Map();
 interface StoreOptions {
   name: string;
@@ -72,7 +72,7 @@ class Model {
     this.deleted = true;
   }
   public update(newParams: object) {
-    if (this.deleted == true)
+    if (this.deleted == true || this.ins.options.json == true && !existsSync(join(process.cwd(), `store`, this.ins.options.name, `${this.key}.json`)) || this.ins.options.memoryCache == true && !Cache.has(this.key))
       throw new VError("DOCUMENT", `ALREADY`, `DELETED`);
     this.cpy = this.product;
     let product: object = defaults(newParams, this.cpy);
