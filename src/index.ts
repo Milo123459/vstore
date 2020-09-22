@@ -26,7 +26,7 @@ interface SearchStuff {
   _: {
     key: string;
   };
-};
+}
 const createDir = (path: string): void => {
   try {
     mkdirSync(path);
