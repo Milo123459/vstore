@@ -134,3 +134,14 @@ MyCoolDB (V4)
 - MongoDB (V1.1)
 - Redis (V2)
 - SQLite (V3)
+
+# Contributing
+
+* Fork this repo
+* Clone the forked repo
+* CD into the directory
+* git checkout -b my-cool-feature
+* Write some code
+* git add .
+* git commit -m "i want to add a feature"
+* Go to https://github.com/Milo123459/vstore/pulls and create a pull and select your branch

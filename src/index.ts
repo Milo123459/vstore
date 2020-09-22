@@ -1,3 +1,8 @@
+/*
+VStore
+https://npm.im/vstorejs
+https://github.com/Milo123459/vstore
+*/
 import cjays from "cjays";
 import {
   existsSync,
@@ -21,8 +26,8 @@ interface SearchStuff {
   _: {
     key: string;
   };
-}
-const createDir = (path: string) => {
+};
+const createDir = (path: string): void => {
   try {
     mkdirSync(path);
   } catch {}
