@@ -38,7 +38,6 @@ const Name = new VStore({
   json: true, // Defaults to false, if you want it enabled, set it as true
 });
 // Note, to actually save data you need to have atleast one of the db methods active.
-// you can also use new VStore.VStore, if you realy need too.
 ```
 
 **Setting data**
