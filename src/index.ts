@@ -40,11 +40,11 @@ const createDir = (path: string): void => {
     mkdirSync(path);
   } catch {}
 };
-const objectUtil = (obj: object, replacer: object):object => {
+const objectUtil = (obj: object, replacer: object): object => {
   const res: object = {};
   Object.entries(obj).map((d) => {
-    if(replacer[d[0]]) {
-      res[d[0]] = replacer[d[0]]
+    if (replacer[d[0]]) {
+      res[d[0]] = replacer[d[0]];
     }
   });
   return res;
@@ -171,11 +171,21 @@ class VStore {
         const arr: Array<unknown> = [];
         entries.map((entri) => {
           if (!!(prop[entri[0]] && prop[entri[0]] == entri[1])) {
-            return arr.push({ ...d[1], _: { key: d[0], status: defaults({...d[1]}, { entries: Object.entries }), _d: defaults({...d[1]}, { entries  }) } });
+            return arr.push({
+              ...d[1],
+              _: {
+                key: d[0],
+                status: defaults({ ...d[1] }, { entries: Object.entries }),
+                _d: defaults({ ...d[1] }, { entries }),
+              },
+            });
           }
         });
 
-        if(arr.filter((x: SearchStuff) => x._.status == true).length == arr.length) {
+        if (
+          arr.filter((x: SearchStuff) => x._.status == true).length ==
+          arr.length
+        ) {
           res.push(arr[0]);
         }
       });
@@ -190,7 +200,10 @@ class VStore {
             return arr.push({ ...d[1], _: { key: d[0], status: true } });
           }
         });
-        if(arr.filter((x: SearchStuff) => x._.status == true).length == arr.length) {
+        if (
+          arr.filter((x: SearchStuff) => x._.status == true).length ==
+          arr.length
+        ) {
           res.push(arr[0]);
         }
       });
