@@ -7,4 +7,4 @@ const Store: VStore = new VStore({
 const stuff = Store.instance({ hello: false, how: "{hello} {gamer}" });
 const y = stuff.create({ hello: true });
 Store.delete({ hello: true }, 0);
-y.update({ x: 'hi' })
+y.update({ x: "hi" });
