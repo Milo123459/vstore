@@ -72,7 +72,19 @@ class Model {
     this.deleted = true;
   }
   public update(newParams: object) {
-    if (this.deleted == true || this.ins.options.json == true && !existsSync(join(process.cwd(), `store`, this.ins.options.name, `${this.key}.json`)) || this.ins.options.memoryCache == true && !Cache.has(this.key))
+    if (
+      this.deleted == true ||
+      (this.ins.options.json == true &&
+        !existsSync(
+          join(
+            process.cwd(),
+            `store`,
+            this.ins.options.name,
+            `${this.key}.json`
+          )
+        )) ||
+      (this.ins.options.memoryCache == true && !Cache.has(this.key))
+    )
       throw new VError("DOCUMENT", `ALREADY`, `DELETED`);
     this.cpy = this.product;
     let product: object = defaults(newParams, this.cpy);
