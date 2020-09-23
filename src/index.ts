@@ -32,7 +32,6 @@ interface SearchStuff {
   _: {
     key: string;
     status?: boolean;
-    _d: any;
   };
 }
 const createDir = (path: string): void => {
@@ -149,7 +148,7 @@ class VStore {
   public instance(properties?: object): Instance {
     if (!properties) properties = {};
     return new Instance(properties, this);
-  }
+  };
   public search(props: object): {} {
     const res: Array<unknown> = [];
     if (this.options.json == true) {
@@ -168,44 +167,27 @@ class VStore {
       const entries = Object.entries(props);
       fileArray.filter((d) => {
         const prop = d[1];
-        const arr: Array<unknown> = [];
         entries.map((entri) => {
           if (!!(prop[entri[0]] && prop[entri[0]] == entri[1])) {
-            return arr.push({
+            return res.push({
               ...d[1],
               _: {
-                key: d[0],
-                status: defaults({ ...d[1] }, { entries: Object.entries }),
-                _d: defaults({ ...d[1] }, { entries }),
+                key: d[0]
               },
             });
           }
         });
-
-        if (
-          arr.filter((x: SearchStuff) => x._.status == true).length ==
-          arr.length
-        ) {
-          res.push(arr[0]);
-        }
       });
     } else if (this.options.memoryCache == true && this.options.json == false) {
       const cacheArray = [...Cache];
       const entries = Object.entries(props);
       cacheArray.filter((d) => {
         const prop = d[1];
-        const arr: Array<unknown> = [];
         entries.map((entri) => {
           if (!!(prop[entri[0]] && prop[entri[0]] == entri[1])) {
-            return arr.push({ ...d[1], _: { key: d[0], status: true } });
+            return res.push({ ...d[1], _: { key: d[0] } });
           }
         });
-        if (
-          arr.filter((x: SearchStuff) => x._.status == true).length ==
-          arr.length
-        ) {
-          res.push(arr[0]);
-        }
       });
     }
     return res;
