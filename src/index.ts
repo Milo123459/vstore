@@ -148,7 +148,7 @@ class VStore {
   public instance(properties?: object): Instance {
     if (!properties) properties = {};
     return new Instance(properties, this);
-  };
+  }
   public search(props: object): {} {
     const res: Array<unknown> = [];
     if (this.options.json == true) {
@@ -172,7 +172,7 @@ class VStore {
             return res.push({
               ...d[1],
               _: {
-                key: d[0]
+                key: d[0],
               },
             });
           }
