@@ -4,8 +4,6 @@
 
 **If you want to support, you can ⭐ the [repo](https://github.com/Milo123459/VStore)!**
 
-**Written in TypeScript with the power of TSLib**
-
 **FAQ**
 
 > Where is data stored?
@@ -103,10 +101,10 @@ Name.search({ fullname: "john doe" }); // returns an array of items containing d
 ```
 
 **Dependencies**
-[cjays](https://npm.im/cjays)
-[tslib](https://npm.im/tslib)
-[lodash.defaults](https://npm.im/lodash.defaults)
-[nanoid](https://npm.im/nanoid)
+
+* [cjays](https://npm.im/cjays)
+* [lodash.defaults](https://npm.im/lodash.defaults)
+* [nanoid](https://npm.im/nanoid)
 
 **Examples**
 
