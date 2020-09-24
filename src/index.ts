@@ -39,15 +39,6 @@ const createDir = (path: string): void => {
     mkdirSync(path);
   } catch {}
 };
-const objectUtil = (obj: object, replacer: object): object => {
-  const res: object = {};
-  Object.entries(obj).map((d) => {
-    if (replacer[d[0]]) {
-      res[d[0]] = replacer[d[0]];
-    }
-  });
-  return res;
-};
 class VError extends Error {
   public constructor(...params: string[]) {
     super();
