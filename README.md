@@ -102,9 +102,9 @@ Name.search({ fullname: "john doe" }); // returns an array of items containing d
 
 **Dependencies**
 
-* [cjays](https://npm.im/cjays)
-* [lodash.defaults](https://npm.im/lodash.defaults)
-* [nanoid](https://npm.im/nanoid)
+- [cjays](https://npm.im/cjays)
+- [lodash.defaults](https://npm.im/lodash.defaults)
+- [nanoid](https://npm.im/nanoid)
 
 **Examples**
 
