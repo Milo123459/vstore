@@ -134,6 +134,7 @@ MyCoolDB (V4)
 - MongoDB (V1.1)
 - Redis (V2)
 - SQLite (V3)
+- Quick.DB (V1.2) (I've been requested to add this like 4 times so here you go :( )
 
 # Contributing
 
