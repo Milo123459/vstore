@@ -1,6 +1,6 @@
 <p align="center"> <img src="https://raw.githubusercontent.com/Milo123459/vstore/master/assets/Logo.png" width=250 height=450/> </p>
 
-# **VStore** - **The most lenient way of saving data.**
+# ⚡ **VStore** - **The most lenient way of saving data**
 
 **If you want to support, you can ⭐ the [repo](https://github.com/Milo123459/VStore)!**
 
